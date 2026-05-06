@@ -12,15 +12,30 @@ body{
     background:#f3e8ff;
 }
 
+/* HEADER */
 header{
     background:white;
     padding:15px;
-    font-weight:bold;
-    color:#9333ea;
-    text-align:center;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
     box-shadow:0 2px 10px rgba(0,0,0,0.1);
 }
 
+header a{
+    text-decoration:none;
+    color:#9333ea;
+    font-weight:bold;
+    margin:0 10px;
+}
+
+/* TITULO */
+h2{
+    text-align:center;
+    color:#333;
+}
+
+/* TABLA */
 .table{
     max-width:900px;
     margin:30px auto;
@@ -35,7 +50,6 @@ header{
     justify-content:space-between;
     padding:10px;
     border-bottom:1px solid #eee;
-    font-size:14px;
 }
 
 .head{
@@ -49,20 +63,52 @@ header{
     text-align:center;
 }
 
-.loading{
-    padding:20px;
+/* JUGADORAS */
+.players{
+    max-width:900px;
+    margin:30px auto;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:10px;
+}
+
+.player{
+    background:white;
+    padding:15px;
+    border-radius:10px;
     text-align:center;
-    color:#666;
+    cursor:pointer;
+    box-shadow:0 3px 10px rgba(0,0,0,0.1);
+    transition:0.2s;
+}
+
+.player:hover{
+    transform:scale(1.05);
 }
 </style>
 </head>
 
 <body>
 
-<header>Prebenjamín - Clasificación</header>
+<header>
+    <div>
+        <a href="index.html">🏠 Menú</a>
+        <a href="#">Clasificación</a>
+        <a href="#jugadoras">Jugadoras</a>
+    </div>
+</header>
 
-<div id="table" class="table">
-    <div class="loading">Cargando datos...</div>
+<h2>Prebenjamín - Clasificación</h2>
+
+<div id="table" class="table"></div>
+
+<h2 id="jugadoras">Jugadoras</h2>
+
+<div class="players">
+    <div class="player">Ana</div>
+    <div class="player">Lucía</div>
+    <div class="player">Marta</div>
+    <div class="player">Sofía</div>
 </div>
 
 <script>
@@ -71,67 +117,53 @@ const URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vS5vTKhCnEoTacQdpcm
 
 async function loadTable(){
 
-    try{
+    const res = await fetch(URL);
+    const text = await res.text();
 
-        const res = await fetch(URL);
-        const text = await res.text();
+    let rows = text.trim().split("\n");
 
-        let rows = text.trim().split("\n");
+    let teams = [];
 
-        let teams = [];
+    for(let i=1;i<rows.length;i++){
 
-        for(let i = 1; i < rows.length; i++){
+        let c = rows[i].split(/[;,]/);
 
-            let r = rows[i];
-            if(!r.trim()) continue;
-
-            let c = r.split(/[;,]/);
-
-            if(c.length < 6) continue;
-
-            teams.push({
-                equipo: c[0].trim(),
-                pj: Number(c[1]) || 0,
-                pg: Number(c[2]) || 0,
-                pe: Number(c[3]) || 0,
-                pp: Number(c[4]) || 0,
-                pt: Number(c[5]) || 0
-            });
-        }
-
-        teams.sort((a,b)=>b.pt - a.pt);
-
-        let html = `
-        <div class="row head">
-            <span>Equipo</span>
-            <span>PJ</span>
-            <span>PG</span>
-            <span>PE</span>
-            <span>PP</span>
-            <span>PT</span>
-        </div>
-        `;
-
-        teams.forEach(t=>{
-            html += `
-            <div class="row">
-                <span>${t.equipo}</span>
-                <span>${t.pj}</span>
-                <span>${t.pg}</span>
-                <span>${t.pe}</span>
-                <span>${t.pp}</span>
-                <span>${t.pt}</span>
-            </div>
-            `;
+        teams.push({
+            equipo:c[0],
+            pj:c[1],
+            pg:c[2],
+            pe:c[3],
+            pp:c[4],
+            pt:c[5]
         });
-
-        document.getElementById("table").innerHTML = html;
-
-    } catch(err){
-        console.error(err);
-        document.getElementById("table").innerHTML =
-        "<div class='loading'>Error cargando datos</div>";
     }
+
+    teams.sort((a,b)=>b.pt-a.pt);
+
+    let html = `
+    <div class="row head">
+        <span>Equipo</span>
+        <span>PJ</span>
+        <span>PG</span>
+        <span>PE</span>
+        <span>PP</span>
+        <span>PT</span>
+    </div>
+    `;
+
+    teams.forEach(t=>{
+        html += `
+        <div class="row">
+            <span>${t.equipo}</span>
+            <span>${t.pj}</span>
+            <span>${t.pg}</span>
+            <span>${t.pe}</span>
+            <span>${t.pp}</span>
+            <span>${t.pt}</span>
+        </div>`;
+    });
+
+    document.getElementById("table").innerHTML = html;
 }
 
 loadTable();
