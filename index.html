@@ -1,95 +1,17 @@
-<!DOCTYPE html><html lang="es">
+<!DOCTYPE html>
+<html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Club de Fútbol</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet"><style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Inter', sans-serif;
-}
+<title>Inicio - Club</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+<style>
 body{
-    background:white;
-    overflow-x:hidden;
-}
-
-/* FONDO CURVADO LILA GUAPO */
-.hero{
-    height:100vh;
-    position:relative;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    flex-direction:column;
-    text-align:center;
-    color:#222;
-    background:white;
-    overflow:hidden;
-}
-
-/* curva grande arriba */
-.hero::before{
-    content:'';
-    position:absolute;
-    top:-250px;
-    left:-200px;
-    width:900px;
-    height:900px;
-    background:linear-gradient(135deg,#e9d5ff,#c084fc,#a855f7);
-    border-radius:50%;
-    z-index:0;
-}
-
-/* curva pequeña derecha */
-.hero::after{
-    content:'';
-    position:absolute;
-    bottom:-200px;
-    right:-150px;
-    width:600px;
-    height:600px;
-    background:linear-gradient(135deg,#f3e8ff,#d8b4fe,#c084fc);
-    border-radius:50%;
-    z-index:0;
-}
-
-.hero-content{
-    position:relative;
-    z-index:2;
-}
-
-.hero h1{
-    font-size:70px;
-    font-weight:800;
-}
-
-.hero p{
-    margin-top:20px;
-    font-size:22px;
-    color:#555;
-}
-
-/* BOTON UNIRSE */
-.club-btn{
-    margin-top:35px;
-    padding:20px 60px;
-    border:none;
-    border-radius:60px;
-    font-size:22px;
-    font-weight:700;
-    color:white;
-    cursor:pointer;
-    background:linear-gradient(45deg,#c77dff,#9333ea);
-    box-shadow:0 15px 35px rgba(147,51,234,0.35);
-    transition:0.3s;
-}
-
-.club-btn:hover{
-    transform:scale(1.08);
-    box-shadow:0 20px 45px rgba(147,51,234,0.45);
+    margin:0;
+    font-family:'Inter', sans-serif;
+    background:#f5f5f5;
 }
 
 /* HEADER */
@@ -97,14 +19,20 @@ header{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    padding:20px 50px;
+    padding:20px 40px;
     background:white;
     box-shadow:0 2px 10px rgba(0,0,0,0.08);
 }
 
+#user{
+    font-weight:600;
+    color:#9333ea;
+}
+
+/* MENU */
 nav{
     display:flex;
-    gap:55px;
+    gap:25px;
 }
 
 nav a{
@@ -113,183 +41,84 @@ nav a{
     font-weight:600;
 }
 
-#user{
-    font-weight:bold;
-    color:#b266ff;
+/* HERO */
+.hero{
+    height:80vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
 }
 
 .hero h1{
-    font-size:65px;
-    font-weight:800;
+    font-size:60px;
+    margin:0;
 }
 
 .hero p{
-    margin-top:20px;
-    font-size:22px;
+    margin-top:10px;
+    font-size:18px;
+    color:#666;
 }
 
-/* BOTON LILA */
-.club-btn{
-    margin-top:30px;
-    padding:18px 55px;
+/* BUTTON */
+button{
+    margin-top:25px;
+    padding:15px 40px;
     border:none;
-    border-radius:50px;
-    font-size:22px;
-    font-weight:bold;
+    border-radius:40px;
+    background:#9333ea;
     color:white;
-    cursor:pointer;
-    background:linear-gradient(45deg,#c77dff,#9d4edd);
-    box-shadow:0 10px 30px rgba(178,102,255,0.4);
-    transition:0.3s;
-}
-
-.club-btn:hover{
-    transform:scale(1.08);
-}
-
-/* LOGIN */
-#login{
-    display:none;
-    position:fixed;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,0.7);
-    justify-content:center;
-    align-items:center;
-    top:0;
-    left:0;
-}
-
-.box{
-    background:white;
-    padding:30px;
-    width:320px;
-    border-radius:20px;
-    text-align:center;
-}
-
-.box input{
-    width:100%;
-    padding:12px;
-    margin:10px 0;
-    border-radius:10px;
-    border:1px solid #ddd;
-}
-
-.box button{
-    width:100%;
-    padding:12px;
-    background:#9d4edd;
-    color:white;
-    border:none;
-    border-radius:10px;
+    font-weight:600;
     cursor:pointer;
 }
+</style>
+</head>
 
-footer{
-    text-align:center;
-    padding:30px;
-    background:white;
-}
-</style><style>
+<body>
 
-/* NAV RESPONSIVE */
-.hamburger{
-    display:none;
-    font-size:28px;
-    cursor:pointer;
-}
+<header>
+    <div><strong>Club Fútbol</strong></div>
 
-@media (max-width:768px){
-    nav{
-        position:absolute;
-        top:80px;
-        right:20px;
-        background:white;
-        flex-direction:column;
-        gap:20px;
-        padding:20px;
-        box-shadow:0 10px 25px rgba(0,0,0,0.1);
-        display:none;
+    <nav>
+        <a href="index.html">Inicio</a>
+        <a href="prebenjamin.html">Equipos</a>
+    </nav>
+
+    <div id="user"></div>
+</header>
+
+<section class="hero">
+    <h1>Bienvenido</h1>
+    <p>Accede al sistema del club</p>
+
+    <button onclick="login()">Entrar</button>
+</section>
+
+<script>
+
+function login(){
+    let name = localStorage.getItem("user");
+
+    if(!name){
+        name = prompt("Introduce tu nombre:");
+        if(!name) return;
+        localStorage.setItem("user", name);
     }
 
-    nav.active{
-        display:flex;
-    }
+    window.location.href = "prebenjamin.html";
+}
 
-    .hamburger{
-        display:block;
+window.onload = function(){
+    let user = localStorage.getItem("user");
+
+    if(user){
+        document.getElementById("user").innerText = "Hola, " + user;
     }
 }
 
-</style></head>
-<body><header style="position:sticky; top:0; z-index:1000; background:white; display:flex; justify-content:space-between; align-items:center; padding:20px 50px; box-shadow:0 2px 10px rgba(0,0,0,0.08);"><img src="Logoclub.png" style="height:55px;">
+</script>
 
-<h2 style="font-size:28px; font-weight:900; background:linear-gradient(45deg,#9333ea,#c77dff); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">
-
-</h2>
-
-<div class="hamburger" onclick="toggleMenu()">☰</div>
-
-<nav id="nav-links">
-    <a href="#">Club</a>
-    <a href="#">Historia</a>
-    <a href="#">Equipos</a>
-    <a href="#">Contacto</a>
-</nav>
-
-</header><section class="hero" id="heroSection">
-    <div class="hero-content">
-        <h1 style="font-family:'Poppins', sans-serif; font-size:65px; font-weight:800; color:#111;">Santa Ponsa Femenino</h1>
-        <p>Pasión, talento y fútbol femenino </p><button class="club-btn" onclick="window.location.href='login.html'">
-    Unirte al Club
-</button>
-</div>
-
-</section><section style="padding:80px 60px; background:white;">
-    <h2 style="text-align:center; font-size:40px; margin-bottom:40px;">Categorías</h2>
-    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:20px;">
-        <div class="card">Prebenjamín</div>
-        <div class="card">Benjamín</div>
-        <div class="card">Alevín</div>
-        <div class="card">Infantil</div>
-        <div class="card">Cadete</div>
-        <div class="card">Juvenil</div>
-        <div class="card">Senior</div>
-    </div>
-</section><section style="padding:80px 60px; background:#faf5ff;">
-    <h2 style="text-align:center; font-size:40px; margin-bottom:40px;">Próximos Eventos</h2>
-    <div class="card">10 Mayo - Partido Liga</div>
-    <div class="card">17 Mayo - Torneo Regional</div>
-    <div class="card">25 Mayo - Captación Nuevas Jugadoras</div>
-</section><section style="padding:80px 60px; background:white;">
-    <h2 style="text-align:center; font-size:40px; margin-bottom:40px;">Noticias</h2>
-    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px;">
-        <div class="card">Nueva equipación oficial</div>
-        <div class="card">Victoria importante esta jornada</div>
-        <div class="card">Nuevas incorporaciones al club</div>
-    </div>
-</section><footer>
-    © 2026 Club
-</footer><style>
-.card{
-    background:linear-gradient(145deg,#ffffff,#f7f0ff);
-    padding:28px;
-    border-radius:22px;
-    text-align:center;
-    box-shadow:0 8px 25px rgba(0,0,0,0.08);
-    font-weight:700;
-    transition:0.3s;
-    border:1px solid rgba(147,51,234,0.1);
-}
-
-.card:hover{
-    transform:translateY(-8px);
-    box-shadow:0 12px 35px rgba(147,51,234,0.2);
-}
-</style><script>
-function toggleMenu(){
-    document.getElementById('nav-links').classList.toggle('active');
-}
-</script></body>
+</body>
 </html>
