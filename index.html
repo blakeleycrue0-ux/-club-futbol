@@ -3,11 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Club Fútbol</title>
+<title>Unirse - Santa Ponsa</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
 <style>
+
 *{
     margin:0;
     padding:0;
@@ -16,136 +17,104 @@
 }
 
 body{
-    background:#fff;
-}
-
-/* HEADER */
-header{
+    height:100vh;
     display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:18px 40px;
-    background:white;
-    box-shadow:0 2px 10px rgba(0,0,0,0.08);
-}
-
-/* LOGO */
-.logo{
-    display:flex;
-    align-items:center;
-    gap:10px;
-}
-
-.logo img{
-    height:45px;
-}
-
-/* MENU */
-nav{
-    display:flex;
-    gap:25px;
-}
-
-nav a{
-    text-decoration:none;
-    color:#333;
-    font-weight:600;
-}
-
-/* USER */
-#user{
-    font-weight:600;
-    color:#9333ea;
-}
-
-/* HERO */
-.hero{
-    height:85vh;
-    display:flex;
-    flex-direction:column;
     justify-content:center;
     align-items:center;
+    overflow:hidden;
+    background:white;
+}
+
+/* fondo lila */
+body::before{
+    content:'';
+    position:absolute;
+    width:800px;
+    height:800px;
+    background:linear-gradient(135deg,#e9d5ff,#c084fc,#a855f7);
+    border-radius:50%;
+    top:-250px;
+    left:-250px;
+    opacity:0.9;
+}
+
+.box{
+    position:relative;
+    z-index:2;
+    background:white;
+    padding:50px;
+    border-radius:20px;
+    box-shadow:0 10px 40px rgba(0,0,0,0.1);
     text-align:center;
+    width:320px;
 }
 
-.hero h1{
-    font-size:60px;
-    font-weight:800;
+.box img{
+    height:60px;
+    margin-bottom:20px;
 }
 
-.hero p{
-    margin-top:10px;
+h1{
+    font-size:26px;
+    margin-bottom:10px;
+}
+
+p{
     color:#666;
+    margin-bottom:20px;
 }
 
-/* BUTTON */
+input{
+    width:100%;
+    padding:12px;
+    border-radius:10px;
+    border:1px solid #ddd;
+    margin-bottom:20px;
+}
+
 button{
-    margin-top:25px;
-    padding:14px 35px;
+    width:100%;
+    padding:12px;
     border:none;
-    border-radius:40px;
+    border-radius:10px;
     background:#9333ea;
     color:white;
     font-weight:600;
     cursor:pointer;
 }
+
 </style>
 </head>
 
 <body>
 
-<header>
+<div class="box">
 
-    <div class="logo">
-        <img src="Logoclub.png" alt="logo">
-        <strong>Santa Ponsa Femenino</strong>
-    </div>
-
-    <nav>
-        <a href="#">Noticias</a>
-        <a href="#">Categorías</a>
-        <a href="#">Nuestra historia</a>
-        <a href="#">Contacto</a>
-        <a href="prebenjamin.html">Equipos</a>
-    </nav>
-
-    <div id="user"></div>
-
-</header>
-
-<section class="hero">
+    <img src="Logoclub.png">
 
     <h1>Santa Ponsa Femenino</h1>
-    <p>Fútbol femenino base</p>
+    <p>Accede al club</p>
 
-    <button id="btnLogin" onclick="login()">
-        Entrar
-    </button>
+    <input id="name" placeholder="Tu nombre">
 
-</section>
+    <button onclick="login()">Entrar</button>
+
+</div>
 
 <script>
 
 function login(){
 
-    let user = localStorage.getItem("user");
+    let name = document.getElementById("name").value;
 
-    if(!user){
-        user = prompt("Introduce tu nombre:");
-        if(!user) return;
-        localStorage.setItem("user", user);
+    if(!name){
+        alert("Escribe tu nombre");
+        return;
     }
 
-window.location.href = "home.html";}
+    localStorage.setItem("user", name);
 
-window.onload = function(){
-
-    let user = localStorage.getItem("user");
-
-    if(user){
-        document.getElementById("user").innerText = "Hola, " + user;
-        document.getElementById("btnLogin").innerText = "Entrar al club";
-    }
+    window.location.href = "home.html";
 }
 
 </script>
